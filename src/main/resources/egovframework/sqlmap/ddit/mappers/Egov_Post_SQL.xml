@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="egovframework.example.sample.service.impl.SampleMapper">
+<mapper namespace="egovframework.ddit.post.service.impl.PostMapper">
 	<resultMap id="post" type="egovframework.ddit.post.PostVO">
 		<result property="id" column="id"/>
 		<result property="title" column="title"/>
@@ -22,8 +22,8 @@
 				  , #{title}
 				  , #{content}
 				  , #{name}
-				  , NOW()
-				  , NOW())
+				  , #{createdAt}
+				  , #{updatedAt})
 	</insert>
 	
 	<update id="updatePost">
@@ -32,7 +32,7 @@
 				, TITLE=#{title}
 				, CONTENT=#{content}
 				, NAME=#{name}
-				, UPDATED_AT=NOW()
+				, UPDATED_AT=#{updatedAt}
 				  WHERE ID=#{id}
 	</update>
 	

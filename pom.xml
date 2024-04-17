@@ -87,7 +87,7 @@
 			<version>2.7.2</version>
 			<classifier>jdk8</classifier>
 		</dependency>
-		<!-- mysql이나 oracle 필요시 사용 -->
+		<!-- DB Dependencies -->
 		<dependency>
 			<groupId>com.googlecode.log4jdbc</groupId>
 			<artifactId>log4jdbc</artifactId>
@@ -104,29 +104,11 @@
 			<artifactId>commons-dbcp2</artifactId>
 			<version>2.9.0</version>
 		</dependency>
-		<!-- Mysql -->
-		<!--
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.33</version>
-        </dependency>
-        -->
 		<dependency>
 			<groupId>org.mariadb.jdbc</groupId>
 			<artifactId>mariadb-java-client</artifactId>
 			<version>3.3.3</version>
 		</dependency>
-		<!-- 오라클DB -->
-		<!--
-        <dependency>
-            <groupId>ojdbc</groupId>
-            <artifactId>ojdbc</artifactId>
-            <version>14</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/src/main/webapp/WEB-INF/lib/ojdbc-14.jar</systemPath>
-        </dependency>
-        -->
 		<dependency>
 			<groupId>org.eclipse</groupId>
 			<artifactId>yasson</artifactId>

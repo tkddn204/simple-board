@@ -30,6 +30,8 @@ public class EgovPostServiceImpl extends EgovAbstractServiceImpl implements Egov
 	public String insertPost(PostVO vo) throws Exception {
 		String id = egovIdGnrService.getNextStringId();
 		vo.setId(id);
+		vo.setCreatedAt(Date.from(Instant.now()));
+		vo.setUpdatedAt(Date.from(Instant.now()));
 		postDAO.insertPost(vo);
 		return id;
 	}
