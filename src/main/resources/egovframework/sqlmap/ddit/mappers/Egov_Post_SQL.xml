@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="egovframework.example.sample.service.impl.SampleMapper">
+	<resultMap id="post" type="egovframework.ddit.post.PostVO">
+		<result property="id" column="id"/>
+		<result property="title" column="title"/>
+		<result property="content" column="content"/>
+		<result property="name" column="name"/>
+		<result property="createdAt" column="created_at"/>
+		<result property="updatedAt" column="updated_at"/>
+	</resultMap>
+	
+	<insert id="insertPost" parameterType="postVO">
+			INSERT INTO POST
+				( ID
+				  , TITLE
+				  , CONTENT
+				  , NAME
+				  , CREATED_AT
+				  , UPDATED_AT )
+			VALUES ( #{id}
+				  , #{title}
+				  , #{content}
+				  , #{name}
+				  , NOW()
+				  , NOW())
+	</insert>
+	
+	<update id="updatePost">
+			UPDATE POST
+			SET ID=#{id}
+				, TITLE=#{title}
+				, CONTENT=#{content}
+				, NAME=#{name}
+				, UPDATED_AT=NOW()
+				  WHERE ID=#{id}
+	</update>
+	
+	<delete id="deletePost">
+			DELETE FROM POST
+			WHERE ID=#{id}
+	</delete>
+	
+	<select id="selectPost" resultMap="post">
+			SELECT
+				ID
+				, TITLE
+				, CONTENT
+				, NAME
+				, CREATED_AT
+				, UPDATED_AT
+			FROM POST
+			WHERE ID=#{id}	
+	</select>
+	
+	<select id="selectPostList" parameterType="postVO" resultType="egovMap">
+			SELECT
+				ID
+				, TITLE
+				, CONTENT
+				, NAME
+				, CREATED_AT
+				, UPDATED_AT
+			FROM POST
+			WHERE 1=1
+			ORDER BY ID DESC
+			LIMIT 10
+	</select>
+	
+	<select id="selectPostListTotCnt" parameterType="postVO" resultType="int">
+			SELECT COUNT(*) totcnt
+			FROM POST
+			WHERE 1=1
+	</select>
+</mapper>

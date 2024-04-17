@@ -10,7 +10,7 @@
 	<context:component-scan base-package="egovframework.ddit">
 		<!-- dispatcher servlet에서 컨트롤러만 include -->
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
-        <!-- spring context에서 나머지 Service, Repository에 대해 Scan (controller가 spring context에서 exclude) -->
+        <!-- spring context에서 나머지 Service, Repository에 대해 Scan -->
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
 	</context:component-scan>

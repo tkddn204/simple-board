@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 
 public class EgovPostExcepHndlr implements ExceptionHandler {
 	
-	private static final Logger LOGGER = LoggerFactory.getLogger(EgovPostExcepHndlr.class)
+	private static final Logger LOGGER = LoggerFactory.getLogger(EgovPostExcepHndlr.class);
 	
 	@Override
 	public void occur(Exception exception, String packageName) {
