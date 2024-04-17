@@ -1,5 +1,7 @@
 package egovframework.ddit.post.web;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.egovframe.rte.fdl.property.EgovPropertyService;
@@ -7,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.support.SessionStatus;
@@ -42,5 +45,18 @@ public class EgovPostController {
 		postService.insertPost(postVO);
 		status.setComplete();
 		return "forword:/addPost.do";
+	}
+	
+	@GetMapping("/postList.do")
+	public String getPostList(
+			ModelMap model
+	) throws Exception {
+		
+		List<?> postList = postService.selectPostList();
+		model.addAttribute("postList", postList);
+		
+		int totCnt = postService.selectPostListTotCnt();
+		LOGGER.info("post 개수 : " + totCnt);
+		return "post/postList";
 	}
 }

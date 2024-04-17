@@ -9,8 +9,8 @@
 <title>에러 페이지</title>
 </head>
 
-<body>
-    <h1>알 수 없는 에러 발생!</h1>
-    <span>콘솔 에러 로그를 확인하세요.</span>
+<body>    
+	<h1>404 NOT FOUND</h1>
+    <span>페이지를 찾을 수 없습니다.</span>
 </body>
 </html>

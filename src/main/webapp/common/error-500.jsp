@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <h1>알 수 없는 에러 발생!</h1>
+    <h1>500 Internal Server Error</h1>
     <span>콘솔 에러 로그를 확인하세요.</span>
 </body>
 </html>
