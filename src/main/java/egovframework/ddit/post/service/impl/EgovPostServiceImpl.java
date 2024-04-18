@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import egovframework.ddit.post.BoardVO;
 import egovframework.ddit.post.PostVO;
 import egovframework.ddit.post.service.EgovPostService;
 
@@ -57,12 +58,12 @@ public class EgovPostServiceImpl extends EgovAbstractServiceImpl implements Egov
 	}
 
 	@Override
-	public List<?> selectPostList() throws Exception {
-		return postDAO.selectPostList();
+	public List<?> selectPostList(BoardVO boardVO) throws Exception {
+		return postDAO.selectPostList(boardVO);
 	}
 
 	@Override
-	public int selectPostListTotCnt() {
-		return postDAO.selectPostListTotCnt();
+	public int selectPostListTotCnt(BoardVO boardVO) {
+		return postDAO.selectPostListTotCnt(boardVO);
 	}
 }

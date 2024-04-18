@@ -5,24 +5,24 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.egovframe.rte.fdl.property.EgovPropertyService;
+import org.egovframe.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springmodules.validation.commons.DefaultBeanValidator;
 
+import egovframework.ddit.post.BoardVO;
 import egovframework.ddit.post.PostVO;
 import egovframework.ddit.post.service.EgovPostService;
-import egovframework.example.sample.service.SampleDefaultVO;
-import egovframework.example.sample.service.SampleVO;
 
 @Controller
 public class EgovPostController {
@@ -96,16 +96,31 @@ public class EgovPostController {
 		return "forward:/postList.do";
 	}
 	
-	@RequestMapping("/postList.do")
+	@RequestMapping(value="/postList.do", method={RequestMethod.GET, RequestMethod.POST})
 	public String getPostList(
+			@ModelAttribute("boardVO") BoardVO boardVO,
 			ModelMap model
 	) throws Exception {
 		
-		List<?> postList = postService.selectPostList();
+		boardVO.setPageUnit(propertyService.getInt("pageUnit"));
+		boardVO.setPageSize(propertyService.getInt("pageSize"));
+		
+		PaginationInfo paginationInfo = new PaginationInfo();
+		paginationInfo.setCurrentPageNo(boardVO.getPageIndex());
+		paginationInfo.setRecordCountPerPage(boardVO.getPageUnit());
+		paginationInfo.setPageSize(boardVO.getPageSize());
+		
+		boardVO.setFirstPage(paginationInfo.getFirstRecordIndex());
+		boardVO.setLastPage(paginationInfo.getLastRecordIndex());
+		boardVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
+		
+		List<?> postList = postService.selectPostList(boardVO);
 		model.addAttribute("postList", postList);
 		
-		int totCnt = postService.selectPostListTotCnt();
-		LOGGER.info("post 개수 : " + totCnt);
+		int totCnt = postService.selectPostListTotCnt(boardVO);
+		paginationInfo.setTotalRecordCount(totCnt);
+		model.addAttribute("paginationInfo", paginationInfo);
+		
 		return "post/postList";
 	}
 

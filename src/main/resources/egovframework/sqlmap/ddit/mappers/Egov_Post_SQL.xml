@@ -53,7 +53,7 @@
 			WHERE ID=#{id}	
 	</select>
 	
-	<select id="selectPostList" parameterType="postVO" resultType="egovMap">
+	<select id="selectPostList" parameterType="boardVO" resultType="egovMap">
 			SELECT
 				ID
 				, TITLE
@@ -63,13 +63,33 @@
 				, UPDATED_AT
 			FROM POST
 			WHERE 1=1
+			<if test="searchKeyword != null and searchKeyword != ''">
+		        <choose>
+		            <when test="searchCondition == 0">
+						AND	TITLE LIKE '%' || #{searchKeyword} || '%'
+					</when>
+		            <when test="searchCondition == 1">
+						AND	NAME LIKE '%' || #{searchKeyword} || '%'
+					</when>
+				</choose>
+			</if>
 			ORDER BY ID DESC
-			LIMIT 10
+			LIMIT #{recordCountPerPage} OFFSET #{firstPage}
 	</select>
 	
 	<select id="selectPostListTotCnt" parameterType="postVO" resultType="int">
 			SELECT COUNT(*) totcnt
 			FROM POST
 			WHERE 1=1
+			<if test="searchKeyword != null and searchKeyword != ''">
+		        <choose>
+		            <when test="searchCondition == 0">
+						AND	TITLE LIKE '%' || #{searchKeyword} || '%'
+					</when>
+		            <when test="searchCondition == 1">
+						AND	NAME LIKE '%' || #{searchKeyword} || '%'
+					</when>
+				</choose>
+			</if>
 	</select>
 </mapper>

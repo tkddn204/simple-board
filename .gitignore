@@ -134,5 +134,4 @@ target/
 .vscode/
 
 ### mount ###
-db/
-
+db/data
