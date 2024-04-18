@@ -48,4 +48,5 @@
 	    p:viewClass="org.springframework.web.servlet.view.JstlView"
 	    p:prefix="/WEB-INF/jsp/egovframework/ddit/" p:suffix=".jsp"/>
 
+    <mvc:view-controller path="/cmmn/validator.do" view-name="cmmn/validator"/>
 </beans>

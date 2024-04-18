@@ -99,4 +99,7 @@ select {font-family:'돋움'; font-size:12px; margin-top:0px; height:20px; paddi
 input.txt               {height:18px; background-color:#FFF; border:1px solid #BCC8D8; padding-top:2px; color:#5e5e5e; cursor:text;}
 input.essentiality  {height:18px; background-color:#ebebeb; border:1px solid #BCC8D8; padding-top:2px; color:#000; cursor:text;}
 
+.post_item { cursor:pointer; }
+.post_item:hover { background-color: #f0f0f0; }
+
 .error > span {font-family: Tahoma; font-weight: bold; color: #000000; line-height: 150%; width: 440px; height: 70px;}

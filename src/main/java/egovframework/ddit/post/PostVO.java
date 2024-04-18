@@ -11,6 +11,12 @@ public class PostVO {
 	private Date createdAt;
 	private Date updatedAt;
 	
+	public PostVO() { }
+
+	public PostVO(String id) {
+		this.id = id;
+	}
+	
 	public String getId() {
 		return id;
 	}
